@@ -52,12 +52,19 @@ public class UserUtil extends UserAbstract {
     }
 
     /**
-     * Converte um dto para entidade
-     * @param user receber um objeto do tipo user dtoo
-     * @return retornar o dto convertido para entidade
+     * Converte um dto para uma entidade
+     * @param client recebe um conjuto de dados em dto
+     * @return retornar o cliente convertido para entidade
      */
-    private UserEntities covertUser(UserDto user){
-        return new UserEntities(user.getUsername(), encryptPassword(user.getPassword()));
+    private ClientDto covertDtoClient(ClientEntities client){
+        return  new ClientDto(
+                client.getName(),
+                formatCpf(client.getCpf()),
+                removeSpacesEmail(client.getEmail()),
+                formatPhoneNumber(client.getPhone()),
+                covertAddress(client.getAddress()),
+                covertUserDto(client.getDateUser())
+        );
     }
 
     /**
@@ -76,8 +83,40 @@ public class UserUtil extends UserAbstract {
         );
 
     }
-
     /**
+     * Converte uma entidade para Dto
+     * @param address receber um objeto do tipo endereço dtoo
+     * @return retornar o entidade convertido para dto
+     */
+    private AddressDto covertAddress(AddressEntities address){
+        return new AddressDto(
+                address.getStreet(),
+                address.getComplement(),
+                address.getNeighborhood(),
+                address.getLocality(),
+                address.getState(),
+                address.getPostalCode()
+        );
+
+    }
+    /**
+     * Converte um dto para entidade
+     * @param user receber um objeto do tipo user dtoo
+     * @return retornar o dto convertido para entidade
+     */
+    protected UserEntities covertUser(UserDto user){
+        return new UserEntities(user.getUsername(), encryptPassword(user.getPassword()));
+    }
+    /**
+     * Converte uma entidade para dto
+     * @param user receber um objeto do tipo user entidade
+     * @return retornar o dto convertido para dto
+     */
+    protected UserDto covertUserDto(UserEntities user){
+        return new UserDto(user.getUsername(), encryptPassword(user.getPassword()));
+    }
+    /**
+     *
      * Converte um objeto em entidade
      * @param dto receber os dados em dto do tipo cliente
      * @return retornar o objeto convertido em entidade
@@ -85,6 +124,9 @@ public class UserUtil extends UserAbstract {
     protected ClientEntities convertDtoToEntities(ClientDto dto) {
         return covertClient(dto);
 
+    }
+    protected ClientDto convertEntitiesToDto(ClientEntities entities) {
+        return covertDtoClient(entities);
     }
 
 
