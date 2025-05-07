@@ -21,9 +21,10 @@ public class UserAbstract implements UserAbstractInterface, ClientAbstractInterf
     }
 
     @Override
-    public boolean checkPassword(String rawPassword) {
-        return passwordEncoder.matches(rawPassword, encryptPassword(rawPassword));
+    public boolean checkPassword(String rawPassword, String storedHash) {
+        return passwordEncoder.matches(rawPassword, storedHash);
     }
+
 
 
     @Override
