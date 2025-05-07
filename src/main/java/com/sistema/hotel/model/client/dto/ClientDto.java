@@ -39,4 +39,12 @@ public class ClientDto {
     }
 
 
+    public ClientDto(String clientName, String clientCpf, String clientEmail, String clientPhone, AddressDto address, UserDto clientUser) {
+        this.clientName = clientName;
+        this.clientCpf = clientCpf;
+        this.clientEmail = clientEmail;
+        this.clientPhone = clientPhone;
+        this.address = address;
+        this.clientUser = clientUser;
+    }
 }
