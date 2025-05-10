@@ -1,4 +1,4 @@
-package com.sistema.hotel.model.client.address.entities;
+package com.sistema.hotel.model.address.entities;
 
 import com.sistema.hotel.model.client.entities.ClientEntities;
 import jakarta.persistence.*;

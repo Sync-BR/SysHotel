@@ -24,8 +24,8 @@ public class UserService {
         return user;
     }
 
-    public void addClient(ClientEntities client) throws ClientException {
-        clientService.saveUser(client);
+    public void addClient(ClientEntities client) {
+        clientService.saveClient(client);
     }
 
     public ClientEntities Login(UserEntities user) {

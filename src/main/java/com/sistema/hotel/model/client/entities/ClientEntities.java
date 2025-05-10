@@ -1,6 +1,7 @@
 package com.sistema.hotel.model.client.entities;
 
-import com.sistema.hotel.model.client.address.entities.AddressEntities;
+import com.sistema.hotel.model.address.entities.AddressEntities;
+import com.sistema.hotel.model.room.entities.RoomEntities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class ClientEntities {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dateUser_id", referencedColumnName = "id")
     private UserEntities dateUser;
+
 
     public ClientEntities() {
     }

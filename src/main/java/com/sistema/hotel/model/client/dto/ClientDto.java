@@ -1,9 +1,8 @@
 package com.sistema.hotel.model.client.dto;
 
-import com.sistema.hotel.model.client.address.dto.AddressDto;
+import com.sistema.hotel.model.address.dto.AddressDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;

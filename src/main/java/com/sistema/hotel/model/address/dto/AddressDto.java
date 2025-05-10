@@ -1,4 +1,4 @@
-package com.sistema.hotel.model.client.address.dto;
+package com.sistema.hotel.model.address.dto;
 
 
 import jakarta.validation.constraints.NotBlank;

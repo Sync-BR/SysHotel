@@ -1,6 +1,6 @@
-package com.sistema.hotel.util.data.abstractInterface;
+package com.sistema.hotel.controller.service.interfaces;
 
-public interface UserAbstractInterface {
+public interface PasswordEncrypt {
     String encryptPassword(String password);
     boolean checkPassword(String rawPassword, String storedHash);
 }
