@@ -1,4 +1,4 @@
-package com.sistema.hotel.controller.service.util;
+package com.sistema.hotel.util.mapper;
 
 import com.sistema.hotel.model.room.dto.RoomDto;
 import com.sistema.hotel.model.room.entities.RoomEntities;

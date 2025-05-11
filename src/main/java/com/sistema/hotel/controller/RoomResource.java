@@ -1,7 +1,7 @@
-package com.sistema.hotel.controller.resource;
+package com.sistema.hotel.controller;
 
-import com.sistema.hotel.controller.service.RoomService;
-import com.sistema.hotel.controller.service.util.RoomMapper;
+import com.sistema.hotel.service.RoomService;
+import com.sistema.hotel.util.mapper.RoomMapper;
 import com.sistema.hotel.exception.ClientException;
 import com.sistema.hotel.exception.RoomException;
 import com.sistema.hotel.model.room.dto.RoomDto;

@@ -1,4 +1,4 @@
-package com.sistema.hotel.controller.service.interfaces;
+package com.sistema.hotel.util.abstractions;
 
 public interface PasswordEncrypt {
     String encryptPassword(String password);

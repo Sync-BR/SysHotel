@@ -1,21 +1,21 @@
-package com.sistema.hotel.controller.service;
+package com.sistema.hotel.service;
 
-import com.sistema.hotel.controller.service.util.ValidatorService;
+import com.sistema.hotel.util.validate.ValidateRoomService;
 import com.sistema.hotel.exception.RoomException;
 import com.sistema.hotel.model.room.entities.RoomEntities;
-import com.sistema.hotel.controller.service.interfaces.RoomServiceInterface;
+import com.sistema.hotel.service.abstractions.RoomServiceInterface;
 import com.sistema.hotel.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RoomService implements RoomServiceInterface {
-    private final ValidatorService validator;
+    private final ValidateRoomService validator;
     private final RoomRepository roomRepository;
-    public RoomService(ValidatorService validator, RoomRepository roomRepository) {
+
+    public RoomService(ValidateRoomService validator, RoomRepository roomRepository) {
         this.validator = validator;
         this.roomRepository = roomRepository;
     }
-
 
     @Override
     public void saveRoom(RoomEntities room) throws RoomException {

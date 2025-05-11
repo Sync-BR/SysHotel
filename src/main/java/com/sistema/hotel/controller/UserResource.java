@@ -1,8 +1,10 @@
-package com.sistema.hotel.controller.resource;
+package com.sistema.hotel.controller;
 
-import com.sistema.hotel.controller.service.UserService;
-import com.sistema.hotel.controller.service.util.PasswordUtil;
-import com.sistema.hotel.controller.service.util.UserMapper;
+import com.sistema.hotel.service.ClientService;
+import com.sistema.hotel.service.UserService;
+import com.sistema.hotel.util.validate.ValidateUserService;
+import com.sistema.hotel.util.validate.ValidatorClientService;
+import com.sistema.hotel.util.mapper.UserMapper;
 import com.sistema.hotel.exception.ClientException;
 import com.sistema.hotel.model.client.dto.ClientDto;
 
@@ -18,20 +20,24 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Validated
 public class UserResource {
+    private final ClientService clientService;
     private final UserService userService;
     private final UserMapper userMapper;
-    private final PasswordUtil encryptPassword;
+    private final ValidatorClientService validator;
+    private final ValidateUserService validateUser;
 
-    public UserResource(UserService userService, UserMapper userMapper, PasswordUtil encryptPassword) {
+    public UserResource(ClientService clientService, UserService userService, UserMapper userMapper, ValidatorClientService validator, ValidateUserService validateUser) {
+        this.clientService = clientService;
         this.userService = userService;
         this.userMapper = userMapper;
-        this.encryptPassword = encryptPassword;
+        this.validator = validator;
+        this.validateUser = validateUser;
     }
 
     @PostMapping
-    public ResponseEntity<?> addUser(@RequestBody @Valid ClientDto client) {
+    public ResponseEntity<?> registerUser(@RequestBody @Valid ClientDto client) {
         try {
-            userService.addClient(userMapper.dtoToEntity(client));
+            clientService.saveClient(userMapper.dtoToEntity(client));
             return ResponseEntity.status(HttpStatus.CREATED).body("Usuário registrado com sucesso.");
         } catch (ClientException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
@@ -41,15 +47,13 @@ public class UserResource {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid UserDto user) {
         try {
-            ClientEntities searchClient = userService.Login(userMapper.userDtoToEntity(user));
-            if (encryptPassword.checkPassword(user.getPassword(), searchClient.getDateUser().getPassword())) {
-                return ResponseEntity.status(HttpStatus.OK).body(userMapper.entityToDto(searchClient));
-            }
+            ClientEntities searchClient = userService.authenticateUser(userMapper.userDtoToEntity(user));
+            validateUser.authenticateUser(searchClient.getDateUser(), user);
+            return ResponseEntity.status(HttpStatus.OK).body(userMapper.entityToDto(searchClient));
+
         } catch (ClientException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("A senha informada está incorreta. Tente novamente.");
-
 
     }
 

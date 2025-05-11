@@ -1,6 +1,6 @@
-package com.sistema.hotel.controller.service.util;
+package com.sistema.hotel.util;
 
-import com.sistema.hotel.controller.service.interfaces.PasswordEncrypt;
+import com.sistema.hotel.util.abstractions.PasswordEncrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

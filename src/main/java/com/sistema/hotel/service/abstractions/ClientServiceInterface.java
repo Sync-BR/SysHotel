@@ -1,4 +1,4 @@
-package com.sistema.hotel.controller.service.interfaces;
+package com.sistema.hotel.service.abstractions;
 
 import com.sistema.hotel.model.client.entities.ClientEntities;
 

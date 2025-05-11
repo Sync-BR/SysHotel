@@ -1,18 +1,17 @@
-package com.sistema.hotel.controller.service;
+package com.sistema.hotel.service;
 
-import com.sistema.hotel.controller.service.interfaces.ClientServiceInterface;
-import com.sistema.hotel.controller.service.util.ValidatorService;
+import com.sistema.hotel.service.abstractions.ClientServiceInterface;
+import com.sistema.hotel.util.validate.ValidatorClientService;
 import com.sistema.hotel.model.client.entities.ClientEntities;
 import com.sistema.hotel.repository.ClientRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClientService  implements ClientServiceInterface {
-    private final ValidatorService validate;
+    private final ValidatorClientService validate;
     protected ClientRepository clientRepository;
 
-    public ClientService(ValidatorService validate, ClientRepository clientRepository) {
+    public ClientService(ValidatorClientService validate, ClientRepository clientRepository) {
         this.validate = validate;
         this.clientRepository = clientRepository;
     }

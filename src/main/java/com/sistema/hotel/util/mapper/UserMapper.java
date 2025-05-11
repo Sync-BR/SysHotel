@@ -1,14 +1,21 @@
-package com.sistema.hotel.controller.service.util;
+package com.sistema.hotel.util.mapper;
 
 
 import com.sistema.hotel.model.client.dto.ClientDto;
 import com.sistema.hotel.model.client.dto.UserDto;
 import com.sistema.hotel.model.client.entities.ClientEntities;
 import com.sistema.hotel.model.client.entities.UserEntities;
+import com.sistema.hotel.util.PasswordUtil;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper extends AddressMapper {
+
+    private final PasswordUtil passwordUtil;
+
+    public UserMapper(PasswordUtil passwordUtil) {
+        this.passwordUtil = passwordUtil;
+    }
 
     public ClientEntities dtoToEntity(ClientDto dto) {
         return new ClientEntities(
@@ -28,12 +35,13 @@ public class UserMapper extends AddressMapper {
                 entity.getEmail(),
                 formatPhone(entity.getPhone()),
                 addressEntityToDto(entity.getAddress()),
-                userEntityToDto(entity.getDateUser())
+                null
+//                userEntityToDto(entity.getDateUser())
         );
     }
 
     public UserEntities userDtoToEntity(UserDto dto) {
-        return new UserEntities(dto.getUsername().trim(), dto.getPassword().trim());
+        return new UserEntities(dto.getUsername().trim(), passwordUtil.encryptPassword(dto.getPassword().trim()));
     }
 
     public UserDto userEntityToDto(UserEntities entity) {
