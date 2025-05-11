@@ -20,31 +20,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Validated
 public class UserResource {
-    private final ClientService clientService;
     private final UserService userService;
     private final UserMapper userMapper;
-    private final ValidatorClientService validator;
     private final ValidateUserService validateUser;
 
-    public UserResource(ClientService clientService, UserService userService, UserMapper userMapper, ValidatorClientService validator, ValidateUserService validateUser) {
-        this.clientService = clientService;
+    public UserResource(UserService userService, UserMapper userMapper, ValidateUserService validateUser) {
         this.userService = userService;
         this.userMapper = userMapper;
-        this.validator = validator;
         this.validateUser = validateUser;
     }
 
-    @PostMapping
-    public ResponseEntity<?> registerUser(@RequestBody @Valid ClientDto client) {
-        try {
-            clientService.saveClient(userMapper.dtoToEntity(client));
-            return ResponseEntity.status(HttpStatus.CREATED).body("Usuário registrado com sucesso.");
-        } catch (ClientException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-        }
-    }
-
-    @PostMapping("/login")
+    @PostMapping()
     public ResponseEntity<?> login(@RequestBody @Valid UserDto user) {
         try {
             ClientEntities searchClient = userService.authenticateUser(userMapper.userDtoToEntity(user));
