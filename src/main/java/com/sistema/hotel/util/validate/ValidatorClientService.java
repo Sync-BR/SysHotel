@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ValidatorClientService implements ClientExceptionInterface {
     private final ClientRepository repository;
+
     public ValidatorClientService(ClientRepository repository) {
         this.repository = repository;
     }
@@ -36,6 +37,28 @@ public class ValidatorClientService implements ClientExceptionInterface {
         }
     }
 
+    @Override
+    public void checkUpdateClient(ClientEntities updateClient) throws ClientException {
+        if (updateClient == null) {
+            throw new ClientException("Erro ao atualizar os dados do cliente. Tente novamente mais tarde.");
+        }
+    }
+
+    @Override
+    public void checkClientCpf(ClientEntities clientCpf) throws ClientException {
+        if (repository.findClientEntitiesByCpf(clientCpf.getCpf()) == null){
+            throw new ClientException("O CPF não encontrado.");
+        }
+
+    }
+
+    @Override
+    public ClientEntities checkFindDate(ClientEntities searchDate) throws ClientException {
+        if(searchDate.getId() == 0){
+            throw new ClientException("Cliente não encontrado. Verifique o CPF ou ID informado.");
+        }
+        return searchDate;
+    }
 
 
 }

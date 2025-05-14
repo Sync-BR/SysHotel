@@ -1,11 +1,11 @@
 package com.sistema.hotel.util;
 
-import com.sistema.hotel.util.abstractions.PasswordEncrypt;
+import com.sistema.hotel.util.abstractions.PasswordEncryptAbstractions;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PasswordUtil implements PasswordEncrypt {
+public class PasswordUtil implements PasswordEncryptAbstractions {
 
     private final PasswordEncoder passwordEncoder;
 

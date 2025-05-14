@@ -15,7 +15,6 @@ public class AddressDto {
     @NotBlank(message = "O nome da rua é obrigatório.")
     private String clientStreet;
 
-    @NotBlank(message = "O complemento do endereço é obrigatório.")
     private String clientComplement;
 
     @NotBlank(message = "O bairro é obrigatório.")

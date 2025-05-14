@@ -1,12 +1,9 @@
 package com.sistema.hotel.controller;
 
-import com.sistema.hotel.service.ClientService;
 import com.sistema.hotel.service.UserService;
 import com.sistema.hotel.util.validate.ValidateUserService;
-import com.sistema.hotel.util.validate.ValidatorClientService;
 import com.sistema.hotel.util.mapper.UserMapper;
 import com.sistema.hotel.exception.ClientException;
-import com.sistema.hotel.model.client.dto.ClientDto;
 
 import com.sistema.hotel.model.client.dto.UserDto;
 import com.sistema.hotel.model.client.entities.ClientEntities;
@@ -20,13 +17,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Validated
 public class UserResource {
-    private final UserService userService;
     private final UserMapper userMapper;
+    private final UserService userService;
     private final ValidateUserService validateUser;
 
-    public UserResource(UserService userService, UserMapper userMapper, ValidateUserService validateUser) {
-        this.userService = userService;
+    public UserResource(UserMapper userMapper, UserService userService, ValidateUserService validateUser) {
         this.userMapper = userMapper;
+        this.userService = userService;
         this.validateUser = validateUser;
     }
 

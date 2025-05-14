@@ -4,6 +4,6 @@ import com.sistema.hotel.model.client.entities.ClientEntities;
 
 public interface ClientServiceInterface {
     void saveClient(ClientEntities newClient);
-    boolean disableClient(int idClient);
+    void disableClient(ClientEntities disableClient);
     ClientEntities updateClient(ClientEntities clientUpdate);
 }

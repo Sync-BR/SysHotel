@@ -6,7 +6,7 @@ Este projeto expõe um endpoint para registrar clientes no sistema de hotelaria,
 ## 🚀 Endpoint
 
 **URL:**  
-`http://127.0.0.1:8080/user`  
+`http://127.0.0.1:8080/client`  
 **Método:** `POST`  
 **Descrição:** Cadastra um novo cliente no sistema.
 
@@ -28,6 +28,7 @@ Content-Type: application/json
   "clientCpf": "12345678101",
   "clientEmail": "eduardofreitasfr@gmail.com",
   "clientPhone": "71999999999",
+  "isActive":true,
   "address": {
     "clientStreet": "Rua das Flores",
     "clientComplement": "123",

@@ -1,6 +1,5 @@
 package com.sistema.hotel.util.mapper;
 
-
 import com.sistema.hotel.model.client.dto.ClientDto;
 import com.sistema.hotel.model.client.dto.UserDto;
 import com.sistema.hotel.model.client.entities.ClientEntities;
@@ -17,12 +16,18 @@ public class UserMapper extends AddressMapper {
         this.passwordUtil = passwordUtil;
     }
 
+    public ClientEntities disableAccount(ClientEntities clientEntities) {
+        clientEntities.setActive(false);
+        return clientEntities;
+    }
+
     public ClientEntities dtoToEntity(ClientDto dto) {
         return new ClientEntities(
                 dto.getClientName().trim(),
                 formatCpf(dto.getClientCpf()),
                 dto.getClientEmail().trim(),
                 formatPhone(dto.getClientPhone()),
+                dto.getIsActive(),
                 addressDtoToEntity(dto.getAddress()),
                 userDtoToEntity(dto.getClientUser())
         );
@@ -34,9 +39,9 @@ public class UserMapper extends AddressMapper {
                 formatCpf(entity.getCpf()),
                 entity.getEmail(),
                 formatPhone(entity.getPhone()),
+                entity.isActive(),
                 addressEntityToDto(entity.getAddress()),
-                null
-//                userEntityToDto(entity.getDateUser())
+                userEntityToDto(entity.getDateUser())
         );
     }
 

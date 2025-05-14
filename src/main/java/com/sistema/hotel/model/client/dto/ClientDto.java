@@ -3,6 +3,7 @@ package com.sistema.hotel.model.client.dto;
 import com.sistema.hotel.model.address.dto.AddressDto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import lombok.ToString;
 @ToString
 public class ClientDto {
     @NotBlank(message = "O nome do cliente é obrigatório.")
-    @Size(min = 8, message = "Insira o nome completo do cliente (mínimo 8 caracteres).")
+    @Size(min = 14, message = "Insira o nome completo do cliente (mínimo 8 caracteres).")
     private String clientName;
 
     @NotBlank(message = "O CPF do cliente é obrigatório.")
@@ -27,7 +28,8 @@ public class ClientDto {
     @NotBlank(message = "O número de telefone do cliente é obrigatório.")
     @Size(min = 11, max = 11, message = "Número de telefone inválido. Deve conter exatamente 11 dígitos.")
     private String clientPhone;
-
+    @NotNull(message = "O status da conta é obrigatorio!")
+    private Boolean isActive;
     @Valid
     private AddressDto address;
     @Valid
@@ -37,12 +39,12 @@ public class ClientDto {
     public ClientDto() {
     }
 
-
-    public ClientDto(String clientName, String clientCpf, String clientEmail, String clientPhone, AddressDto address, UserDto clientUser) {
+    public ClientDto(String clientName, String clientCpf, String clientEmail, String clientPhone, Boolean isActive, AddressDto address, UserDto clientUser) {
         this.clientName = clientName;
         this.clientCpf = clientCpf;
         this.clientEmail = clientEmail;
         this.clientPhone = clientPhone;
+        this.isActive = isActive;
         this.address = address;
         this.clientUser = clientUser;
     }

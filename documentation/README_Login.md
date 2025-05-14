@@ -1,13 +1,13 @@
 # 📲 Como Fazer Login na API do Sistema Hotel
 
-Este documento explica como realizar o login na API do sistema utilizando o endpoint `/user/login`.
+Este documento explica como realizar o login na API do sistema utilizando o endpoint `/user`.
 
 ## 🔐 Endpoint de Login
 
 **URL:**
 
 ```
-POST http://127.0.0.1:8080/user/login
+POST http://127.0.0.1:8080/user
 ```
 
 **Descrição:**

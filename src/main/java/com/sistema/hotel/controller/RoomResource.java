@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class RoomResource  {
     private final RoomService service;
-    private final RoomMapper mapper;
+    private final  RoomMapper mapper;
 
     public RoomResource(RoomService service, RoomMapper mapper) {
         this.service = service;
