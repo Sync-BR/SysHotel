@@ -31,8 +31,10 @@ public class ClientDto {
     @NotNull(message = "O status da conta é obrigatorio!")
     private Boolean isActive;
     @Valid
+    @NotNull(message = "Campo de endereço é obrigatório")
     private AddressDto address;
     @Valid
+    @NotNull(message = "Campo de usuário é obrigatório")
     private UserDto clientUser;
 
 

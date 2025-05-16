@@ -52,6 +52,5 @@ public class ClientController {
         } catch (ClientException e) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
-
     }
 }
