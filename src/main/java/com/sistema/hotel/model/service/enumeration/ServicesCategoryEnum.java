@@ -1,0 +1,37 @@
+package com.sistema.hotel.model.service.enumeration;
+
+import lombok.Getter;
+
+@Getter
+public enum ServicesCategoryEnum {
+    // Alimentação e Bebidas
+    SERVICO_DE_REFEICOES_NO_QUARTO,
+    CAFE_DA_MANHA_NO_QUARTO,
+    FRIGOBAR_ABASTECIDO,
+    CAFETEIRA_E_CHALEIRA_NO_QUARTO,
+
+    // Limpeza e Higiene
+    LIMPEZA_DIARIA_DO_QUARTO,
+    TROCA_DE_ROUPA_DE_CAMA,
+    TROCA_DE_TOALHAS,
+    REPOSICAO_DE_AMENITIES,
+    ARRUMACAO_NOTURNA,
+
+    // Conforto e Conveniência
+    DESPERTADOR_PERSONALIZADO,
+    CONTROLE_DE_CLIMATIZACAO,
+    SMART_TV_COM_CANAIS_INTERNACIONAIS,
+    WIFI_GRATUITO,
+    COFRE_NO_QUARTO,
+    FERRO_E_TABUA_DE_PASSAR,
+
+    // Serviços Adicionais
+    LAVANDERIA_E_PASSADORIA,
+    SERVICO_DE_BABY_SITTER,
+    JORNAIS_DIARIOS,
+    MENU_DE_TRAVESSEIROS,
+    ROUPAO_E_CHINELOS_DISPONIVEIS,
+    SERVICO_DE_CONCIERGE,
+    PEDIDO_DE_ITENS_ADICIONAIS;
+
+}
