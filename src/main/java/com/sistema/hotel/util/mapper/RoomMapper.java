@@ -2,7 +2,7 @@ package com.sistema.hotel.util.mapper;
 
 import com.sistema.hotel.model.room.dto.RoomDto;
 import com.sistema.hotel.model.room.entities.RoomEntities;
-import com.sistema.hotel.model.room.type.TypeRoom;
+import com.sistema.hotel.model.room.enumeration.TypeRoom;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;

@@ -1,4 +1,4 @@
-package com.sistema.hotel.model.room.type;
+package com.sistema.hotel.model.room.enumeration;
 
 import lombok.Getter;
 @Getter

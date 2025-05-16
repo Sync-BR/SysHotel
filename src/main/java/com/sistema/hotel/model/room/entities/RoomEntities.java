@@ -1,7 +1,6 @@
 package com.sistema.hotel.model.room.entities;
 
-import com.sistema.hotel.model.client.entities.ClientEntities;
-import com.sistema.hotel.model.room.type.TypeRoom;
+import com.sistema.hotel.model.room.enumeration.TypeRoom;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
