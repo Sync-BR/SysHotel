@@ -21,7 +21,7 @@ POST http://186.247.89.58:8081/room
 {
   "number": 100,
   "level": 2,
-  "letter": "b",
+  "letter": "a",
   "capacity": 2,
   "price": 350.0,
   "available": true,
@@ -30,8 +30,29 @@ POST http://186.247.89.58:8081/room
   "image": "https://hotelapi.com/images/room202B.jpg",
   "title": "Suíte Luxo com Vista para o Mar",
   "description": "Suíte equipada com cama king-size, hidromassagem, TV 50”, frigobar e varanda com vista para o mar.",
-  "typeRoom": "Couple"
+  "typeRoom": "Couple",
+  "client":{
+    "clientName": "Maria da Silva",
+    "clientCpf": "12345678101",
+    "clientEmail": "eduardofreitasfr@gmail.com",
+    "clientPhone": "71981590149",
+    "isActive":false,
+    "address": {
+      "clientStreet": "Rua das Flores",
+      "clientComplement": "2",
+      "clientNeighborhood": "Centro",
+      "clientLocality": "Salvador",
+      "clientState": "rh",
+      "clientPostalCode": "40000000"
+    },
+    "clientUser": {
+      "username": "mariasil2",
+      "password": "123564532"
+    }
+  }
+
 }
+
 ```
 
 ---
@@ -46,6 +67,8 @@ POST http://186.247.89.58:8081/room
 - **400 Bad Request**
   - Quarto com número/letra já existente.
   - Dados inválidos.
+  - Usuário ou senha incorreta.
+  - 
 
 ---
 
