@@ -8,7 +8,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@Entity(name = "CLIENT")
+@Entity(name = "client")
 @ToString
 public class ClientEntities {
     @Id

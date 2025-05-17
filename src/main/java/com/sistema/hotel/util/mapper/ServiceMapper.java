@@ -4,7 +4,6 @@ import com.sistema.hotel.model.service.dto.ServicesDto;
 import com.sistema.hotel.model.service.entities.ServiceEntities;
 import org.springframework.stereotype.Component;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Base64;
