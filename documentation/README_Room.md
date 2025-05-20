@@ -8,7 +8,7 @@ Esta API permite cadastrar novos quartos no sistema do hotel, validando dados e 
 
 **URL de requisição:**
 ```
-POST http://186.247.89.58:8081/room
+POST http://186.247.89.58:8080/room
 ```
 
 > **Nota:** O endpoint oficial mapeado no controller é `/rooms`, então verifique se o deploy atual está redirecionando corretamente.

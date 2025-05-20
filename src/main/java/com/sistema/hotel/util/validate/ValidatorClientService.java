@@ -45,16 +45,17 @@ public class ValidatorClientService implements ClientExceptionInterface {
     }
 
     @Override
-    public void checkClientCpf(ClientEntities clientCpf) throws ClientException {
-        if (repository.findClientEntitiesByCpf(clientCpf.getCpf()) == null){
+    public ClientEntities checkClientCpf(ClientEntities clientCpf) throws ClientException {
+        if (repository.findClientEntitiesByCpf(clientCpf.getCpf()) == null) {
             throw new ClientException("O CPF não encontrado.");
         }
-
+        return repository.findClientEntitiesByCpf(clientCpf.getCpf());
     }
+
 
     @Override
     public ClientEntities checkFindDate(ClientEntities searchDate) throws ClientException {
-        if(searchDate.getId() == 0){
+        if (searchDate.getId() == 0) {
             throw new ClientException("Cliente não encontrado. Verifique o CPF ou ID informado.");
         }
         return searchDate;

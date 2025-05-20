@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class ServicesService implements ServiceHotelInterface {
     @Autowired
-    private  ServicesRepository repository;
+    private ServicesRepository repository;
     private final ValidateServices validate;
 
     public ServicesService() {

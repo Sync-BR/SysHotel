@@ -1,6 +1,7 @@
 package com.sistema.hotel.model.client.entities;
 
 import com.sistema.hotel.model.address.entities.AddressEntities;
+import com.sistema.hotel.model.client.enumeration.PermissionEnumeration;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,8 @@ public class ClientEntities {
     private String email;
     private String phone;
     private boolean isActive;
+    @Enumerated(EnumType.STRING)
+    private PermissionEnumeration permission;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private AddressEntities address;
@@ -28,6 +31,7 @@ public class ClientEntities {
 
 
     public ClientEntities() {
+        this.permission = PermissionEnumeration.DEV;
     }
 
 
@@ -40,5 +44,6 @@ public class ClientEntities {
         this.isActive = isActive;
         this.address = address;
         this.dateUser = dateUser;
+        this.permission = PermissionEnumeration.DEV;
     }
 }

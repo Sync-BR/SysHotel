@@ -4,10 +4,12 @@ import com.sistema.hotel.model.service.enumeration.ServicesCategoryEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@ToString
 public class ServiceEntities {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -15,7 +15,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ServicesDto {
-
     @NotBlank(message = "A imagem do serviço é obrigatória.")
     @Size(min = 10, message = "A URL da imagem deve conter no mínimo 10 caracteres.")
     private String serviceImage;
@@ -50,6 +49,8 @@ public class ServicesDto {
         this.isActive = isActive;
         this.servicePrice = servicePrice;
     }
+
+
 
 
 }

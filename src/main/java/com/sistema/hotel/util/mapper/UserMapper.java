@@ -48,7 +48,9 @@ public class UserMapper extends AddressMapper {
     public UserEntities userDtoToEntity(UserDto dto) {
         return new UserEntities(dto.getUsername().trim(), passwordUtil.encryptPassword(dto.getPassword().trim()));
     }
-
+    public UserEntities userDtoToEntityNoEncrypt(UserDto dto) {
+        return new UserEntities(dto.getUsername().trim(), dto.getPassword().trim());
+    }
     public UserDto userEntityToDto(UserEntities entity) {
         return new UserDto(entity.getUsername(), entity.getPassword());
     }

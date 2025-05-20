@@ -41,7 +41,7 @@ public class ClientDto {
     public ClientDto() {
     }
 
-    public ClientDto(String clientName, String clientCpf, String clientEmail, String clientPhone, Boolean isActive, AddressDto address, UserDto clientUser) {
+    public ClientDto( String clientName, String clientCpf, String clientEmail, String clientPhone, Boolean isActive, AddressDto address, UserDto clientUser) {
         this.clientName = clientName;
         this.clientCpf = clientCpf;
         this.clientEmail = clientEmail;

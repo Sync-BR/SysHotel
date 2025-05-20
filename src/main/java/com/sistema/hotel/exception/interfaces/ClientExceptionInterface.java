@@ -10,8 +10,7 @@ public interface ClientExceptionInterface {
 
     void checkUpdateClient(ClientEntities updateClient) throws ClientException;
 
-    void checkClientCpf(ClientEntities clientCpf) throws ClientException;
-
+    ClientEntities checkClientCpf(ClientEntities clientCpf) throws ClientException;
     ClientEntities checkFindDate(ClientEntities searchDate) throws ClientException;
 
 }

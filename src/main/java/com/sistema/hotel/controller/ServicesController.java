@@ -2,6 +2,7 @@ package com.sistema.hotel.controller;
 
 import com.sistema.hotel.exception.ClientException;
 import com.sistema.hotel.exception.ServicesException;
+import com.sistema.hotel.model.client.dto.ClientDto;
 import com.sistema.hotel.model.service.dto.RequestServiceDto;
 import com.sistema.hotel.model.service.dto.ServicesDto;
 import com.sistema.hotel.service.ServicesRequestService;
@@ -10,6 +11,7 @@ import com.sistema.hotel.util.mapper.RequestServiceMapper;
 import com.sistema.hotel.util.mapper.ServiceMapper;
 import com.sistema.hotel.util.mapper.UserMapper;
 import com.sistema.hotel.util.validate.ValidateUserService;
+import com.sistema.hotel.util.validate.ValidatorClientService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,7 @@ public class ServicesController {
     private final ServiceMapper mapper;
     private final UserMapper userMapper;
     private final RequestServiceMapper requestServiceMapper;
+
 
     public ServicesController(ServicesService service, ServicesRequestService serviceRequest, ValidateUserService validateUser, ServiceMapper mapper, UserMapper userMapper, RequestServiceMapper requestServiceMapper) {
         this.service = service;
@@ -49,7 +52,7 @@ public class ServicesController {
     @PostMapping
     public ResponseEntity<?> createService(@RequestBody @Valid ServicesDto dto) {
         try {
-            validateUser.checkIsLoggedIn(userMapper.userDtoToEntity(dto.getClient().getClientUser()),
+            validateUser.checkIsLoggedIn(userMapper.userDtoToEntityNoEncrypt(dto.getClient().getClientUser()),
                     dto.getClient().getClientUser().getPassword());
             service.save(mapper.convertToEntity(dto));
             return ResponseEntity.status(HttpStatus.CREATED).body("Serviço adicionado com sucesso!");
@@ -58,14 +61,40 @@ public class ServicesController {
         }
     }
 
+
+    /**
+     * Serviços solicitados
+     *
+     * @param dto
+     * @return
+     */
     @PostMapping("/request")
-    public ResponseEntity<?> requestService(@RequestBody @Valid RequestServiceDto dto) {
+    public ResponseEntity<?> requestService(@RequestBody @Valid ServicesDto dto) {
         try {
             validateUser.checkIsLoggedIn(userMapper.userDtoToEntity(dto.getClient().getClientUser()),
                     dto.getClient().getClientUser().getPassword());
             serviceRequest.save(requestServiceMapper.convertToEntity(dto));
             return ResponseEntity.status(HttpStatus.OK).body("Serviço solicitado com sucesso!");
         } catch (ServicesException | ClientException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    /**
+     * Serviços solicitados
+     *
+     * @return
+     */
+    @GetMapping("/request")
+    public ResponseEntity<?> responseService(@RequestBody @Valid ClientDto dto) {
+        System.out.println(dto);
+        try {
+            validateUser.checkIsLoggedIn(userMapper.userDtoToEntity(dto.getClientUser()),dto.getClientUser().getPassword());
+
+
+            return ResponseEntity.status(HttpStatus.OK).body(requestServiceMapper.convertListToDto(serviceRequest.responseListServicesRequest(userMapper.dtoToEntity(dto))));
+        } catch (ClientException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }

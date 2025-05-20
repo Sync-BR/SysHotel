@@ -33,7 +33,7 @@ public class RoomResource  {
     public ResponseEntity<?> addRoom(@RequestBody @Valid RoomDto room) {
         try{
             room = mapper.convertLatterToUpperCase(room);
-            validateUser.checkIsLoggedIn(userMapper.userDtoToEntity(room.getClient().getClientUser()), room.getClient().getClientUser().getUsername());
+            validateUser.checkIsLoggedIn(userMapper.userDtoToEntity(room.getClient().getClientUser()), room.getClient().getClientUser().getPassword());
             service.saveRoom(mapper.covertEntitiesRoom(room));
             return ResponseEntity.status(HttpStatus.CREATED).body("O Quarto foi adicionado com sucesso ao sistema.");
         } catch (ClientException | RoomException e){
