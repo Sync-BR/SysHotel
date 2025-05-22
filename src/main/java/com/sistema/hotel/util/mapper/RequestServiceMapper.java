@@ -4,6 +4,7 @@ import com.sistema.hotel.model.service.dto.RequestServiceDto;
 import com.sistema.hotel.model.service.dto.ServicesDto;
 import com.sistema.hotel.model.service.entities.RequestServiceEntities;
 import com.sistema.hotel.model.service.entities.ServiceEntities;
+import com.sistema.hotel.util.Base64Util;
 import com.sistema.hotel.util.PasswordUtil;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ public class RequestServiceMapper {
     private final UserMapper userMapper;
 
     public RequestServiceMapper() {
-        this.serviceMapper = new ServiceMapper();
+        this.serviceMapper = new ServiceMapper(new Base64Util());
         this.userMapper = new UserMapper(new PasswordUtil(new BCryptPasswordEncoder()));
     }
 

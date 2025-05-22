@@ -2,23 +2,25 @@ package com.sistema.hotel.util.mapper;
 
 import com.sistema.hotel.model.service.dto.ServicesDto;
 import com.sistema.hotel.model.service.entities.ServiceEntities;
+import com.sistema.hotel.util.Base64Util;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Base64;
 
 @Component
 public class ServiceMapper {
+    private final Base64Util baseUtil;
 
+    public ServiceMapper(Base64Util baseUtil) {
+        this.baseUtil = baseUtil;
+    }
 
     public ServicesDto convertToDto(ServiceEntities serviceEntities) {
-        String imgBase64 = null;
-        if (serviceEntities.getImage() != null) {
-            imgBase64 = Base64.getEncoder().encodeToString(serviceEntities.getImage());
-        }
+
         return new ServicesDto(
-                imgBase64,
+                baseUtil.encode(serviceEntities.getImage()),
                 serviceEntities.getName(),
                 serviceEntities.getDescription(),
                 serviceEntities.getCategory(),
@@ -28,13 +30,10 @@ public class ServiceMapper {
     }
 
     public ServiceEntities convertToEntity(ServicesDto dto) {
-        byte[] imageBytes = new byte[0];
-        if (dto.getServiceImage() != null && !dto.getServiceImage().isEmpty()) {
-            imageBytes = Base64.getDecoder().decode(dto.getServiceImage());
-        }
+
 
         return new ServiceEntities(
-                imageBytes,
+                baseUtil.decode(dto.getServiceImage()),
                 dto.getServiceName(),
                 dto.getServiceDescription(),
                 dto.getServicePrice(),
@@ -47,15 +46,8 @@ public class ServiceMapper {
         List<ServicesDto> responseService = new ArrayList<>();
 
         for (ServiceEntities serviceEntity : service) {
-            String base64Image = "";
-            byte[] imageBytes = serviceEntity.getImage();
-
-            if (serviceEntity.getImage() != null && serviceEntity.getImage().length > 0) {
-                base64Image = Base64.getEncoder().encodeToString(imageBytes);
-            }
-
             responseService.add(new ServicesDto(
-                    base64Image,
+                    baseUtil.encode(serviceEntity.getImage()),
                     serviceEntity.getName(),
                     serviceEntity.getDescription(),
                     serviceEntity.getCategory(),
