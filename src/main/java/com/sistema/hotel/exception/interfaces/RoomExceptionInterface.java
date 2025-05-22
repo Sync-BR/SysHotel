@@ -8,5 +8,4 @@ public interface RoomExceptionInterface {
      boolean checkAvailability(int numberRoom, char letterRoom, int roomLevel);
      void checkRoomSaved(RoomEntities room) throws RoomException;
      void checkRoomAvailability(RoomEntities room) throws RoomException;
-     void checkAvailableRoom(RoomEntities room) throws RoomException;
 }

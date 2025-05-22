@@ -36,6 +36,7 @@ public class ValidateRoomService implements RoomExceptionInterface {
         }
     }
 
+
     @Override
     public boolean checkAvailability(int numberRoom, char letterRoom, int roomLevel) {
         if (roomRepository.findRoomEntitiesByNumberRoom(numberRoom) != null) {
