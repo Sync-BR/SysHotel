@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ServicesRepository extends JpaRepository<ServiceEntities, Integer> {
     List<ServiceEntities> findByName(String name);
+    List<ServiceEntities> findAllByisActive(boolean active);
 }

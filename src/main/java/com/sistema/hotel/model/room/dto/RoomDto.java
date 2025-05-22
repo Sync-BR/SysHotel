@@ -47,7 +47,8 @@ public class RoomDto {
     @NotNull(message = "Campo de cliente é obrigatório")
     private ClientDto client;
 
-    public RoomDto(int number, int level, Integer capacity, Double price, boolean available, boolean smoker, boolean accessibility, String image, String title, String description, String letter, String typeRoom, ClientDto client) {
+
+    public RoomDto(int number, int level, Integer capacity, Double price, boolean available, boolean smoker, boolean accessibility, String image, String title, String description, String letter, String typeRoom) {
         this.number = number;
         this.level = level;
         this.capacity = capacity;
@@ -60,6 +61,7 @@ public class RoomDto {
         this.description = description;
         this.letter = letter;
         this.typeRoom = typeRoom;
-        this.client = client;
     }
+
+
 }

@@ -20,14 +20,15 @@ public class ValidateUserService implements AuthenticateAbstractions {
 
     @Override
     public void authenticateUser(UserEntities user, UserDto dto) throws ClientException {
-        if(!passwordEncrypt.checkPassword(dto.getPassword(), user.getPassword())) {
+        if (!passwordEncrypt.checkPassword(dto.getPassword(), user.getPassword())) {
             throw new ClientException("Senha incorreta.");
         }
+
     }
 
     @Override
     public void userExists(UserEntities userFount) throws ClientException {
-        if(userFount == null){
+        if (userFount == null) {
             throw new ClientException("Nenhum usuário correspondente foi encontrado.");
         }
     }
@@ -35,10 +36,12 @@ public class ValidateUserService implements AuthenticateAbstractions {
     @Override
     public void checkIsLoggedIn(UserEntities user, String password) throws ClientException {
         UserEntities searchUser = userRepository.findByUsername(user.getUsername());
-        if(searchUser == null){
+        if (searchUser == null) {
             throw new ClientException("Usuário não encontrado");
         }
-        if(!passwordEncrypt.checkPassword(password, searchUser.getPassword())){
+        if (password.equals(searchUser.getPassword())) {
+            return;
+        } else if (!passwordEncrypt.checkPassword(password, searchUser.getPassword())) {
             throw new ClientException("Dados invalidos.");
         }
     }

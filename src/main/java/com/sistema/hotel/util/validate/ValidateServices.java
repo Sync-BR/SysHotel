@@ -29,6 +29,9 @@ public class ValidateServices implements ServicesExceptionInterface, RequestServ
         if (repository.findByName(entity.getName()) == null || repository.findByName(entity.getName()).isEmpty()) {
             throw new ServicesException("Serviço não encontrado");
         }
+        if(!repository.findByName(entity.getName()).get(0).isActive()){
+            throw new ServicesException("Serviço não disponivel");
+        }
         return repository.findByName(entity.getName()).getFirst();
 
     }

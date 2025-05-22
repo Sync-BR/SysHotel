@@ -20,7 +20,7 @@ public class ServicesService implements ServiceHotelInterface {
     }
 
     public List<ServiceEntities> getAllServices() {
-        return repository.findAll();
+        return repository.findAllByisActive(true);
     }
 
     @Override

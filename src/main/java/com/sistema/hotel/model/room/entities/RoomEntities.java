@@ -4,9 +4,11 @@ import com.sistema.hotel.model.room.enumeration.TypeRoom;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @Entity(name = "ROOM")
 public class RoomEntities {
     @Id

@@ -8,7 +8,7 @@ import java.util.List;
 public interface RoomRepository extends JpaRepository<RoomEntities, Integer> {
     List<RoomEntities> findRoomEntitiesByNumberRoom(int numberRoom);
 
-    List<RoomEntities> findRoomEntitiesByNumberLetter(char numberLetter);
-
+    List<RoomEntities> findAllByRoomLevel(int roomLevel);
     RoomEntities findRoomEntitiesByNumberRoomAndNumberLetter(int numberRoom, char numberLetter);
+    RoomEntities findRoomEntitiesByNumberRoomAndNumberLetterAndRoomLevel(int numberRoom, char numberLetter, int roomLevel);
 }

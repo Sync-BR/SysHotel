@@ -88,11 +88,8 @@ public class ServicesController {
      */
     @GetMapping("/request")
     public ResponseEntity<?> responseService(@RequestBody @Valid ClientDto dto) {
-        System.out.println(dto);
         try {
             validateUser.checkIsLoggedIn(userMapper.userDtoToEntity(dto.getClientUser()),dto.getClientUser().getPassword());
-
-
             return ResponseEntity.status(HttpStatus.OK).body(requestServiceMapper.convertListToDto(serviceRequest.responseListServicesRequest(userMapper.dtoToEntity(dto))));
         } catch (ClientException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

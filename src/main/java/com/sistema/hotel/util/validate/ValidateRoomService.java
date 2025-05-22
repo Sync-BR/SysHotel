@@ -15,6 +15,14 @@ public class ValidateRoomService implements RoomExceptionInterface {
     }
 
     @Override
+    public RoomEntities checkRoomExists(RoomEntities room) throws RoomException {
+        if(room == null) {
+            throw new RoomException("Quarto não encontrado no sistema");
+        }
+        return room;
+    }
+
+    @Override
     public void checkRoomSaved(RoomEntities room) throws RoomException {
         if (room.getId() == 0) {
             throw new RoomException("Erro ao tentar adicionar um quarto. Verifique os dados e tente novamente.");
@@ -29,9 +37,9 @@ public class ValidateRoomService implements RoomExceptionInterface {
     }
 
     @Override
-    public boolean checkAvailability(int numberRoom, char letterRoom) {
+    public boolean checkAvailability(int numberRoom, char letterRoom, int roomLevel) {
         if (roomRepository.findRoomEntitiesByNumberRoom(numberRoom) != null) {
-            checkRoomAvailability(roomRepository.findRoomEntitiesByNumberRoomAndNumberLetter(numberRoom, letterRoom));
+            checkRoomAvailability(roomRepository.findRoomEntitiesByNumberRoomAndNumberLetterAndRoomLevel(numberRoom, letterRoom, roomLevel));
         }
         return true;
     }
