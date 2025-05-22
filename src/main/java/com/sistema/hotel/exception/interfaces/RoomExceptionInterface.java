@@ -5,7 +5,8 @@ import com.sistema.hotel.model.room.entities.RoomEntities;
 
 public interface RoomExceptionInterface {
      RoomEntities checkRoomExists(RoomEntities room) throws RoomException;
+     boolean checkAvailability(int numberRoom, char letterRoom, int roomLevel);
      void checkRoomSaved(RoomEntities room) throws RoomException;
      void checkRoomAvailability(RoomEntities room) throws RoomException;
-     boolean checkAvailability(int numberRoom, char letterRoom, int roomLevel);
+     void checkAvailableRoom(RoomEntities room) throws RoomException;
 }

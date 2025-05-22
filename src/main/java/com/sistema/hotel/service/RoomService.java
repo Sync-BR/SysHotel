@@ -14,23 +14,29 @@ import java.util.List;
 @Service
 public class RoomService implements RoomServiceInterface {
     private final ValidateRoomService validator;
-    private final RoomRepository roomRepository;
-    private final RoomMapper roomMapper;
+    private final RoomRepository repository;
 
-    public RoomService(ValidateRoomService validator, RoomRepository roomRepository, RoomMapper roomMapper) {
+    public RoomService(ValidateRoomService validator, RoomRepository roomRepository) {
         this.validator = validator;
-        this.roomRepository = roomRepository;
-        this.roomMapper = roomMapper;
+        this.repository = roomRepository;
     }
     public RoomEntities getRoom(int numberRoom, char numberLetter, int roomLevel) {
-        return roomRepository.findRoomEntitiesByNumberRoomAndNumberLetterAndRoomLevel(numberRoom, numberLetter, roomLevel);
+        return repository.findRoomEntitiesByNumberRoomAndNumberLetterAndRoomLevel(numberRoom, numberLetter, roomLevel);
     }
 
+
+    /**
+     * @return Retorna uma lista de quartos
+     */
+    @Override
+    public List<RoomEntities> getRoomsActive() {
+        return repository.findAllByAvailable(true);
+    }
 
     @Override
     public void saveRoom(RoomEntities room) throws RoomException {
         if (validator.checkAvailability(room.getNumberRoom(), room.getNumberLetter(), room.getRoomLevel())) {
-            validator.checkRoomSaved(roomRepository.save(room));
+            validator.checkRoomSaved(repository.save(room));
         }
     }
 

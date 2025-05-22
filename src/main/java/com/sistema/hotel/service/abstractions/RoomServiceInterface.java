@@ -6,6 +6,7 @@ import com.sistema.hotel.model.room.entities.RoomEntities;
 import java.util.List;
 
 public interface RoomServiceInterface {
+    List<RoomEntities> getRoomsActive();
     void saveRoom(RoomEntities room);
     boolean deleteRoom(int roomId);
     RoomEntities updateRoom(RoomEntities room);

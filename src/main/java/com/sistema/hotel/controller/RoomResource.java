@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("/rooms")
 @RestController
 @Validated
@@ -23,11 +25,18 @@ public class RoomResource {
     private final ValidateUserService validateUser;
     private final UserMapper userMapper;
 
+
     public RoomResource(RoomService service, RoomMapper mapper, ValidateUserService validateUser, UserMapper userMapper) {
         this.service = service;
         this.mapper = mapper;
         this.validateUser = validateUser;
         this.userMapper = userMapper;
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllRooms() {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mapper.convertListToDto(service.getRoomsActive()));
+
     }
 
     @PostMapping
@@ -41,6 +50,7 @@ public class RoomResource {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
 
 
 }
